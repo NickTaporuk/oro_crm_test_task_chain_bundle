@@ -30,15 +30,15 @@ monolog:
 
 create and add service in the chain
 ```yaml
-    # path_to_bundle/Resources/config/services.yml
-    parameters:
-        chain.slave.name: PathToCommand
+# path_to_bundle/Resources/config/services.yml
+parameters:
+    chain.slave.name: PathToCommand
 
-    services:
-        chain_command.transport.name:
-            class: %chain.slave.name%
-            tags:
-                -  { name: chain_command.transport }
+services:
+    chain_command.transport.name:
+        class: %chain.slave.name%
+        tags:
+            -  { name: chain_command.transport }
 ```
 
 Usage
