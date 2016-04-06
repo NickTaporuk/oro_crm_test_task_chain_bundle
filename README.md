@@ -31,7 +31,20 @@ monolog:
 Usage
 -----
 
-The bundle registers two services:
+The bundle registers one services:
 
- - the `knp_snappy.image` service allows you to generate images;
- - the `knp_snappy.pdf` service allows you to generate pdf files.
+ - the `chain_command.transport_chain` service execute chain;
+
+ in Console command method execute
+
+        public function execute(InputInterface $input, OutputInterface $output)
+        {
+            $container = $this->getApplication()->getKernel()->getContainer();
+            $chain = $container->get('chain_command.transport_chain');
+
+            $output->writeln(static::MESSAGE_MASTER);
+
+            $chain->setMasterProcess($this->getName());
+            $chain->setMasterMessageToLog(static::MESSAGE_MASTER);
+            $chain->upChain();
+        }
