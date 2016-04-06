@@ -3,10 +3,6 @@ ChainCommandBundle
 
 Installation
 ------------
-
-
-If you need to change the binaries, change the instance options or even disable one or both services, you can do it through the configuration.
-
 ```yaml
 # app/config/config.yml
 chain_command:
@@ -15,6 +11,7 @@ chain_command:
 
 Where command:name is master command name
 
+Logging process chain
 ```yaml
 # app/config/config.yml
 monolog:
