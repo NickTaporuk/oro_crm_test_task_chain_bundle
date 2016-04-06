@@ -28,6 +28,16 @@ monolog:
             channels: chain
 ```
 
+create and add service in the chain
+# {path_to_bundle}/Resources/config/services.yml
+    parameters:
+        chain.slave.name: PathToCommand
+
+    services:
+        chain_command.transport.name:
+            class: %chain.slave.name%
+            tags:
+                -  { name: chain_command.transport }
 Usage
 -----
 
@@ -48,3 +58,7 @@ The bundle registers one services:
             $chain->setMasterMessageToLog(static::MESSAGE_MASTER);
             $chain->upChain();
         }
+
+Development time
+----------------
+25 hours
