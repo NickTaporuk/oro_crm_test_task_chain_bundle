@@ -9,23 +9,23 @@ If you need to change the binaries, change the instance options or even disable 
 
 ```yaml
 # app/config/config.yml
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
-        options:    []
-    image:
-        enabled:    true
-        binary:     /usr/local/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
-        options:    []
+chain_command:
+    master: 'command:name'
 ```
 
-If you want to change temporary folder which is ```sys_get_temp_dir()``` by default, you can use
+Where command:name is master command name
 
 ```yaml
 # app/config/config.yml
-knp_snappy:
-    temporary_folder: %kernel.cache_dir%/snappy
+monolog:
+    handlers:
+        ...
+        chain:
+            type: stream
+            path: "%kernel.logs_dir%/chain.log"
+            level: debug
+            formatter: chain_log_formatter
+            channels: chain
 ```
 
 Usage
