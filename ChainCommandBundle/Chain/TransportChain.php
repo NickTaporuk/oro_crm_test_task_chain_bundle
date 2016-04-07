@@ -43,7 +43,7 @@ class TransportChain
             $this->logger->debug(sprintf(ChainConsoleLogMessage::MESSAGE_LOG_EXECUTING_MASTER,$this->getMasterProcess()));
 
             foreach($this->transports as $v) {
-                if($this->logger) $this->logger->debug(sprintf(ChainConsoleLogMessage::MESSAGE_LOG_SLAVE,$v->getName(),$this->getMasterProcess()));
+                $this->logger->debug(sprintf(ChainConsoleLogMessage::MESSAGE_LOG_SLAVE,$v->getName(),$this->getMasterProcess()));
                 $output = new BufferedOutput();
                 $v->run(new ArrayInput([]),$output);
                 $content = $output->fetch();
