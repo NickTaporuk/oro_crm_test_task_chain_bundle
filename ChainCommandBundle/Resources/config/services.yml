@@ -1,0 +1,30 @@
+parameters:
+    chain.master: ChainCommandBundle\Command\ChainMasterCommand
+    chain.master.listener: ChainCommandBundle\EventListener\ChainListener
+    chain.console_transport: ChainCommandBundle\Chain\TransportChain
+    chain.console.logger: Symfony\Bridge\Monolog\Logger
+    chain.console.logger.formatter: Symfony\Bridge\Monolog\Formatter\ConsoleFormatter
+
+services:
+    chain_command.responsibility:
+        class: %chain.master%
+
+    chain_command.transport_chain:
+        class: %chain.console_transport%
+        arguments: ["@monolog.logger.chain"]
+
+    chain_command.monolog_console_processor:
+        class: %chain.console.logger%
+        tags:
+            - { name: monolog.logger, channel: chain }
+
+    chain_command.chain_listener:
+        class: %chain.master.listener%
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    chain_log_formatter:
+            class: %chain.console.logger.formatter%
+            arguments:
+                - "[%%datetime%%] %%start_tag%% %%message%% %%end_tag%% %%context%% %%extra%%\n"
