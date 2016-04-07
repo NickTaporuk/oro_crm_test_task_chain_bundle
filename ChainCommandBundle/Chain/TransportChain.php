@@ -33,7 +33,7 @@ class TransportChain
     }
 
     /**
-     * @param Logger $logger
+     * function execute chain and logging this
      */
     public function upChain()
     {
