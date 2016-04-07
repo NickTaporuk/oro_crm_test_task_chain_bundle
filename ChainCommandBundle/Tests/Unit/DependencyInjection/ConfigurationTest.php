@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: nick
- * Date: 06.04.16
- * Time: 12:07
- */
 
 namespace ChainCommandBundle\Tests\Unit\DependencyInjection;
 
